@@ -30,7 +30,7 @@ Do you need help, you can always come and ask me in the `#support` channel.
 | xivlauncher_path | str | Path to XIVLauncher |
 | roaming_paths | dict[str, [str, null]] | Path to roamingPath (null = default settings and plugins) |
 | sleep_time* | int | Time to wait before launching next account in seconds (defaults to 10 seconds) |
-| profiles | list[dict[str, [bool, str]]] | List of profiles to launch |
+| profiles | list[] | List of profiles to launch |
 
 ### config:profiles
 
