@@ -31,7 +31,10 @@ class FFXIV:
             "".join(self.oauth.split(":")[1:])
         )
 
-        self.update_print("Requesting OTP code...", colour="yellow")
+        self.update_print(
+            "Requesting OTP code...",
+            colour="yellow"
+        )
 
         match option.lower():
             case "1password":

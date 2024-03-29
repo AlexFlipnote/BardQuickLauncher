@@ -14,7 +14,9 @@ def print_stop(
     exit(status)
 
 
-def clear_terminal(text: Optional[str] = None) -> None:
+def clear_terminal(
+    text: Optional[str] = None
+) -> None:
     """
     Clears the terminal screen
     """

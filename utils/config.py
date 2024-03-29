@@ -18,7 +18,9 @@ class Config:
     def __init__(self, data: dict):
         self.xivlauncher_path: str = data["xivlauncher_path"]
         self.sleep_time: int = data.get("sleep_time", 10)
-        self.roaming_paths: RoamingPaths = RoamingPaths(data.get("roaming_paths", {}))
+        self.roaming_paths: RoamingPaths = RoamingPaths(
+            data.get("roaming_paths", {})
+        )
 
         self.profiles: list[FFXIV] = sorted(
             [FFXIV(config=self, data=p) for p in data["profiles"]],
@@ -37,7 +39,8 @@ class Config:
             return None
 
         misc.print_stop(
-            f"{colours.red}Error:{colours.reset} XIVLauncher path not found, please check your config.json file\n"
+            f"{colours.red}Error:{colours.reset} XIVLauncher path not found, "
+            "please check your config.json file\n"
             f"Path: {self.xivlauncher_path}",
             status=1
         )
