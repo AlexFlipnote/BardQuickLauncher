@@ -35,7 +35,7 @@ def main() -> None:
                 should_exit_loop = True
                 misc.clear_terminal(_credits)
                 for i, p in enumerate(config.profiles):
-                    if i != 0 and i != len(config.profiles) - 1:
+                    if i != 0:
                         p.update_print("Waiting...", colour="yellow")
                         time.sleep(config.sleep_time)
 
