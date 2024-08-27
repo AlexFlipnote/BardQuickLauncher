@@ -10,16 +10,17 @@ if TYPE_CHECKING:
 
 
 class FFXIV:
-    def __init__(self, config: "Config", data: dict):
+    def __init__(self, config: "Config", data: dict, account: str):
         self._config: "Config" = config
 
-        self.account: str = data["account"]
-        self.main_account: bool = bool(data.get("main_account", False))
+        self.account: str = account
+
+        self.main_account: bool = bool(data.get("main", "false").lower() == "true")
         self.roaming_path: Optional[str] = data.get("roaming_path", None)
-        self.steam: bool = bool(data.get("steam", False))
+        self.steam: bool = bool(data.get("steam", "false").lower() == "true")
         self.oauth: Optional[str] = data.get("oauth", None)
 
-        self.display_name: str = data.get("display_name", data["account"])
+        self.display_name: str = data.get("display_name", self.account)
 
     def _otp_handler(self) -> Optional[otp.OTP]:
         """ Reads FFXIV.oauth value and returns the appropriate OTP handler. """

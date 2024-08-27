@@ -1,9 +1,13 @@
 import os
+import re
+import configparser
 
 from typing import Optional
 
 from . import misc, colours
 from .ffxiv import FFXIV
+
+re_profiles = re.compile(r"profiles\.([a-zA-Z0-9]{1,})")
 
 
 class RoamingPaths:
@@ -15,15 +19,35 @@ class RoamingPaths:
 
 
 class Config:
-    def __init__(self, data: dict):
-        self.xivlauncher_path: str = data["xivlauncher_path"]
-        self.sleep_time: int = data.get("sleep_time", 10)
-        self.roaming_paths: RoamingPaths = RoamingPaths(
-            data.get("roaming_paths", {})
+    def __init__(self):
+        data = configparser.ConfigParser()
+        try:
+            data.read("./config.ini")
+        except FileNotFoundError:
+            misc.print_stop("'config.ini' file not found, please create one.")
+
+        _xivlauncher = dict(data).get("XIVLauncher", {})
+        self.xivlauncher_path: str = _xivlauncher.get(
+            "path", f"{os.getenv('LOCALAPPDATA')}\\XIVLauncher\\XIVLauncher.exe"
         )
 
+        self.sleep_time: int = misc.get_int(_xivlauncher, "sleep_time", 10)
+
+        self.roaming_paths: RoamingPaths = RoamingPaths(
+            dict(data).get("roaming_paths", {})
+        )
+
+        _find_profiles: list[re.Match] = []
+        for g in data.sections():
+            if not re_profiles.match(g):
+                continue
+            _find_profiles.append(re_profiles.match(g))
+
         self.profiles: list[FFXIV] = sorted(
-            [FFXIV(config=self, data=p) for p in data["profiles"]],
+            [
+                FFXIV(config=self, data=data[p[0]], account=p.group(1))
+                for p in _find_profiles
+            ],
             key=lambda x: x.main_account, reverse=True
         )
 

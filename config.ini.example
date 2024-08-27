@@ -1,0 +1,15 @@
+[XIVLauncher]
+path = C:\Path\To\XIVLauncher.exe (Remove line if you're using the default path)
+sleep_time = 6
+
+[roaming_paths]
+bards = C:\path\to\custom\folder
+
+[profiles.awesome_account]
+main = true
+display_name = AlexFlipnote
+oauth = 1password:Square-enix
+
+[profiles.alt1]
+display_name = Funny Alt 1
+roaming_path = bards

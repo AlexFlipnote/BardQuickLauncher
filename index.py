@@ -1,16 +1,12 @@
-import json
 import time
 
-from utils import colours, misc
+from utils import colours, misc, __version__
 from utils.config import Config
 
-with open("./config.json", "r", encoding="utf-8") as f:
-    config = Config(json.load(f))
-
-config.validate_path()
+config = Config()
 
 _credits = (
-    f"{colours.blue}[ {colours.reset}BardQuickLauncher (BQL) v1.0.0 {colours.blue}]{colours.reset}\n"
+    f"{colours.blue}[ {colours.reset}BardQuickLauncher (BQL) v{__version__} {colours.blue}]{colours.reset}\n"
     f"  - Created by AlexFlipnote{colours.reset}\n\n"
 )
 
