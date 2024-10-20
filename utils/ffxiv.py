@@ -64,7 +64,7 @@ class FFXIV:
 
         output = [
             self._config.xivlauncher_path,
-            f"--account=\"{self.account}-{bool(self.oauth)}-{self.steam}\""
+            f"--account={self.account}-{bool(self.oauth)}-{self.steam}"
         ]
 
         if self.roaming_path:
@@ -73,7 +73,7 @@ class FFXIV:
             )
 
             if _roaming_paths:
-                output.append(f"--roamingPath=\"{_roaming_paths}\"")
+                output.append(f"--roamingPath={_roaming_paths}")
 
         subprocess.Popen(output)
 
