@@ -7,7 +7,7 @@ from typing import Optional
 from . import misc, colours
 from .ffxiv import FFXIV
 
-re_profiles = re.compile(r"profiles\.([a-zA-Z0-9]{1,})")
+re_profiles = re.compile(r"profiles\.([\w\-]+)")
 
 
 class RoamingPaths:
