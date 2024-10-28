@@ -15,7 +15,7 @@ I simply wanted to have a script to launch multiple accounts at the same time in
 
 ## Support
 Do you need help, you can always come and ask me in the `#support` channel.
-<br>🔗 https://discord.gg/AlexFlipnote
+<br>🔗 https://discord.gg/yqb7vATbjH
 
 ## One Time Password support
 > It's very limited at the moment, but I plan to add more.
